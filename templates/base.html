@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Flask webapp </title>
+
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+
+<meta name="description" content="webapp description here for search engines">
+
+<meta name="h0lyl337" content="">
+
+<meta name="keywords" content="AI voice, voice cloning, text to speech, voice generator, AI, A.I, cloning, voice, clone">
+
+<script type="text/javascript" src="/static/brython.js"></script>
+<script type="text/javascript" src="/static/brython_stdlib.js"></script>
+
+<script type="text/python">
+    from browser import document
+    from browser.widgets.dialog import InfoDialog
+
+    global history
+    history = 0
+
+    def click(ev):
+        global history
+        element = document["menu"]
+        element2 = document["menu-button"]
+        
+        if history == 1:
+
+            history = 0
+        
+            element.style.display = "none"
+            element2.style.display = "block"
+            element2.style.animation = "rotate-menu-back 1s forwards"            
+
+        else:
+            history = 1
+            element.style.display ="block"
+            element2.style.animation = "rotate-menu 1s forwards"
+
+    document["menu-button"].bind("click", click)
+   
+</script>
+
+<link rel="icon" href="./static/images/ailogo.png">
+
+</head>
+
+<body onload="brython()">
+
+    <header>
+
+        <nav>
+            
+            <button id="open-button" style="background-color: white; width: 3em;position: fixed;left:0;color:rgb(255, 136, 50);display: none;"></button>
+            <br>
+
+        {% if session['username'] %}
+        <a id="menu-button" >≡</a>
+
+        <div id="title-logo">
+            <img id="ailogo" src="/static/images/ailogo.png">
+            <h1><a href="/" style="text-decoration: none; color:white;">Siphonbit</a></h1>
+        </div>
+        
+        <div id="nav-container">
+            <a href="/" class="nav-link" ><img class="nav-button" src="/static/images/house.png"></a>
+        <a href="/personalise" class="nav-link" ><img class="nav-button" src="/static/images/customize.png"></a>
+        <a href="/settings" class="nav-link" ><img class="nav-button" src="/static/images/settings2.png"></a>
+        <a href="/logout"><img class="nav-button" src="/static/images/logout.png"></a>
+        </div>
+
+        {% else %}
+        <a href="/login" style="position: fixed; left:20px; font-weight: bolder;  text-decoration: none !important; color:white; font-size: 2em; ">login</a>
+       <img id="ailogo" src="/static/images/ailogo.png">
+            <h1><a href="/" style="text-decoration: none; color:white;">Flask-webapp</a></h1>
+        
+        {% endif %}
+        </nav>
+
+    <div id="menu">
+
+        <h1 style="background-color: rgb(255, 165, 113); position: fixed;left:0;right:0;">Menu</h1>
+
+        <a>credits : </a> <a style="font-size: 2em; color:gold">999</a>
+
+        <ul style="width: 100%;">
+            <li style="border-bottom: 5px solid rgb(255, 165, 113); font-size: 3em;"><a href="/" style="text-decoration: none;color:white;"><img src="/static/images/house.png" style="height:1em; float: left;">Home</a></li>
+            <li style="border-bottom: 5px solid rgb(255, 165, 113); font-size: 3em;"><a href="/logout" style="text-decoration: none;color:white;"><img src="/static/images/logout.png" style="height:1em;float: left;">logoff</a></li>
+        </ul>
+
+    </div>
+
+</header>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+    
+</body>
+</html>

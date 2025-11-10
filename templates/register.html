@@ -1,0 +1,63 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+{% if session['username'] %}
+<h3>asdasd</h3>
+{% else %}
+
+<div id="register-form">
+    <form action="/register" method="post">
+    <center>
+        <a>username:</a>
+
+    <br><br>
+
+    <input id="username" name="username" >
+
+    <br><br>
+
+    <a>email:     </a>
+
+    <br><br>
+
+    <input id="email" name="email" type="email" >
+
+    <br><br>
+
+    <a>password:</a>
+
+    <br><br>
+    
+    <input id="password" name="password" type="password">
+
+    <br><br>
+
+    <a>confirm password:</a>
+
+    <br><br>
+
+    <input id="confirm-password" name="confirm-password" type="password">
+
+    <br><br>
+
+    <button type="submit">ok</button>
+
+    <br><br>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li style="color:red;">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    </center>
+
+    </form>
+</div>
+
+{% endif %}
+{% endblock %} 

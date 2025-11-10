@@ -1,0 +1,58 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+<script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js">
+</script>
+
+<script>
+    const imageCache = {};
+function loadCachedImage(src, imgElement) {
+  if (imageCache[src]) {
+    imgElement.src = imageCache[src];
+  } else {
+    fetch(src).then(res => res.blob()).then(blob => {
+      const url = URL.createObjectURL(blob);
+      imageCache[src] = url;
+      imgElement.src = url;
+    });
+  }
+}
+</script>
+{% if session['username'] %}
+<h3>asdasd</h3>
+<div id="login-form">
+    <a href="/" data-ajax>zzzzzz</a>
+    <form action="/login" method="post">
+    <a>login:</a>
+    <br>
+    <input id="username" name="username" >
+    <br><br>
+    <a>password:</a>
+    <br>
+    <input id="password" name="password" type="password">
+    <br><br>
+    <button type="submit" style="background-color: blueviolet;">ok</button>
+    </form>
+</div>
+
+{% else %}
+<div id="login-form">
+    <form action="/login" method="post">
+    <a>login:</a>
+    <br>
+    <input id="username" name="username" >
+    <br><br>
+    <a>password:</a>
+    <br>
+    <input id="password" name="password" type="password">
+    <br><br>
+    <button type="submit" style="background-color: blueviolet;">ok</button>
+    
+    </form>
+    <button style="background-color: blueviolet;"><a href="/register" style="text-decoration: none; color:white;">register</a></button>
+</div>
+
+{% endif %}
+{% endblock %} 
